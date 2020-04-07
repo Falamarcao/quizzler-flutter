@@ -3,19 +3,20 @@ import 'package:flutter/material.dart';
 
 // Alert with multiple and custom buttons
 class QuizAlert {
-  void onAlertButtonsPressed(context, {String title, String desc}) {
+  void onAlertButtonsPressed(context,
+      {String title, String desc, String buttonText, AlertType type}) {
     Alert(
       context: context,
       style: AlertStyle(
         isOverlayTapDismiss: false,
       ),
-      type: AlertType.warning,
+      type: type,
       title: title,
       desc: desc,
       buttons: [
         DialogButton(
           child: Text(
-            "RESTART",
+            buttonText,
             style: TextStyle(color: Colors.white, fontSize: 20),
           ),
           onPressed: () => Navigator.pop(context),

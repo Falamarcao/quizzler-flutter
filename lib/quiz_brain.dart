@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'quiz_alert.dart';
 import 'question.dart';
 
@@ -41,10 +42,14 @@ class QuizBrain {
       _questionNumber++;
     } else {
       QuizAlert alert = QuizAlert();
-      alert.onAlertButtonsPressed(context,
-          title: 'Finished',
-          desc:
-              'You\'ve reached the end of the quiz and you answered correctly $_correctAnswers questions!');
+      alert.onAlertButtonsPressed(
+        context,
+        title: 'Finished',
+        desc:
+            'You\'ve reached the end of the quiz and you answered correctly $_correctAnswers questions!',
+        buttonText: 'RESTART',
+        type: AlertType.success,
+      );
       _questionNumber = 0;
       _correctAnswers = 0;
       _scoreKeeper.clear();
