@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -37,7 +40,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -60,9 +63,8 @@ class _QuizPageState extends State<QuizPage> {
                   fontSize: 20.0,
                 ),
               ),
-              onPressed: () {
-                //The user picked true.
-              },
+              onPressed: () =>
+                  setState(() => quizBrain.checkAnswer(context, true)),
             ),
           ),
         ),
@@ -78,13 +80,14 @@ class _QuizPageState extends State<QuizPage> {
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {
-                //The user picked false.
-              },
+              onPressed: () =>
+                  setState(() => quizBrain.checkAnswer(context, false)),
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: quizBrain.scoreKeeper,
+        ),
       ],
     );
   }
